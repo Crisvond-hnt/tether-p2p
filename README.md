@@ -1,6 +1,6 @@
-# tether-p2p
+# Tether P2P
 
-A skill for an agent that is about to write a Pear app. You install it into the project, then you tell the agent to follow it. The agent gets a procedure, the files it may copy, and the scripts for the steps that are easy to get wrong.
+The skill for an agent that is about to write a Pear app. Say Tether P2P. The install slug is `tether-p2p`, because a skill name cannot contain spaces. You install it into the project, then you tell the agent to follow it. The agent gets a procedure, the files it may copy, and the scripts for the steps that are easy to get wrong.
 
 ```sh
 npx skills add Crisvond-hnt/tether-p2p
@@ -51,6 +51,6 @@ A room from recipe A is a text log. [Keet](https://keet.io) is the product with 
 
 If the skill and the docs disagree, follow the docs: [docs.pears.com](https://docs.pears.com) and [docs.qvac.tether.io](https://docs.qvac.tether.io).
 
-To watch the same pieces run before you ask an agent to build, clone [Crisvond-hnt/desk](https://github.com/Crisvond-hnt/desk), then `npm install` and `npm run friends`.
+To watch the same pieces run before you ask an agent to build, clone [tether-p2p-demo](https://github.com/Crisvond-hnt/tether-p2p-demo), then `npm install` and `npm run friends`.
 
 Apache License 2.0. See `LICENSE`.

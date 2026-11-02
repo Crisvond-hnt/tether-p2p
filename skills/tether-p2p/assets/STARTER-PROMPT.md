@@ -25,4 +25,4 @@ Installed from the skill repo: use the prompt above.
 
 Map checkout, https://github.com/Crisvond-hnt/teather : follow `AGENTS.md` and `skills/tether-p2p/SKILL.md`.
 
-The sitting you can run, https://github.com/Crisvond-hnt/desk : `npm install`, then `npm run friends` and `npm run friends -- join`.
+The Tether P2P demo, https://github.com/Crisvond-hnt/tether-p2p-demo : `npm install`, then `npm run friends` and `npm run friends -- join`.

@@ -113,7 +113,7 @@ If an API is unclear, **fetch the official page in the recipe before writing**.
 ```sh
 node scripts/verify-app.mjs .
 # cwd = a directory that already installed the Hyper* packages
-#   desk repo root, or tests/ in the map
+#   tether-p2p-demo repo root, or tests/ in the map
 node <skill>/scripts/prove-all.mjs
 ```
 
