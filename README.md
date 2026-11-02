@@ -51,6 +51,6 @@ A room from recipe A is a text log. [Keet](https://keet.io) is the product with 
 
 If the skill and the docs disagree, follow the docs: [docs.pears.com](https://docs.pears.com) and [docs.qvac.tether.io](https://docs.qvac.tether.io).
 
-To watch the same pieces run before you ask an agent to build, clone [tether-p2p-demo](https://github.com/Crisvond-hnt/tether-p2p-demo), then `npm install` and `npm run friends`.
+To watch the same pieces run before you ask an agent to build, clone [tether-p2p-demo](https://github.com/Crisvond-hnt/tether-p2p-demo), then `npm install` and `npm start`. That opens a window. The other window is a button in it.
 
 Apache License 2.0. See `LICENSE`.
