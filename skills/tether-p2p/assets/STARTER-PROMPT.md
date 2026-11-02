@@ -25,4 +25,4 @@ Installed from the skill repo: use the prompt above.
 
 Map checkout, https://github.com/Crisvond-hnt/teather : follow `AGENTS.md` and `skills/tether-p2p/SKILL.md`.
 
-The Tether P2P demo, https://github.com/Crisvond-hnt/tether-p2p-demo : `npm install`, then `npm start`. That opens your window. Press Open the other window for the friend. `--cli` keeps the terminal.
+The Tether P2P demo, https://github.com/Crisvond-hnt/tether-p2p-demo : `npm install`, then `npm start`. Start a thread with a friend and send the code. They paste it in their own window. Try both sides on this computer when you are alone. `--cli` keeps the terminal.
