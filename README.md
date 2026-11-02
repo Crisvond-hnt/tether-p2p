@@ -1,56 +1,51 @@
 # Tether P2P
 
-The skill for an agent that is about to write a Pear app. Say Tether P2P. The install slug is `tether-p2p`, because a skill name cannot contain spaces. You install it into the project, then you tell the agent to follow it. The agent gets a procedure, the files it may copy, and the scripts for the steps that are easy to get wrong.
+An agent skill for building apps on the Holepunch, Pear, and QVAC stack. Install it, then tell the agent what you want. It composes the peer-to-peer modules that app needs. There is no cloud backend in the design, and a chat is not the only thing it knows how to make.
+
+The name is Tether P2P. The install slug is `tether-p2p`, because a skill name cannot contain a space.
 
 ```sh
 npx skills add Crisvond-hnt/tether-p2p
 ```
 
-Run that in the app you want built. Add `-g` to put the skill in your user directory instead of the project. The [skills CLI](https://github.com/vercel-labs/skills) installs it for Cursor, Claude Code, Codex, and the other agents it supports. Add `-y` if you do not want the prompts.
+Run that in the project you want built. `-g` installs it for every project on the machine. `-y` skips the prompts. The [skills CLI](https://github.com/vercel-labs/skills) puts the skill where Cursor, Claude Code, Codex, and the other agents it supports will find it.
 
-Then say:
+The skill is a directory: `SKILL.md`, plus `references/`, `scripts/`, and `assets/`. The agent reads the short procedure first and opens a reference only when the app needs that module. The scripts cover the steps that are easy to get wrong, such as writing the `pear://` link `pear touch` only prints.
 
-```text
-Use the tether-p2p skill. Build a P2P chat with invites.
-```
+## What you can ask it to build
 
-The skill picks one recipe and stops. If you asked for two products, it builds the room first.
+Describe the app. The agent is supposed to list every module that app needs and build all of them.
 
-## The five recipes
+| You want | It reaches for |
+| --- | --- |
+| A desktop, terminal, or mobile app that ships to other peers | Pear, on the official `hello-pear-*` template for that surface |
+| Files and folders a group shares | Hyperdrive, Corestore, Hyperswarm |
+| A sorted table | Hyperbee |
+| A large blob | Hyperblobs |
+| A log more than one person can append | Autobase. One writer per Hypercore. `apply` stays a pure reducer |
+| Notes or secrets that follow a person, opened by an invite | Autopass, the library PearPass is built on |
+| A model that runs on the device and does not take an API key | QVAC, in a Bare worker. The official terminal host is `hello-pear-qvac-tui` |
+| An address the person holds | WDK. The wallet seed is a different phrase from the Keet identity |
+| A TCP or UDP port, with no account | Holesail |
+| The same person on two devices | `keet-identity-key` |
+| Something still reachable when the laptop is asleep | A blind peer, or `pear seed` |
 
-**A. Room.** An Autobase log with more than one writer. The file to copy is `assets/room.cjs`. `apply` in that file only updates the view. Leave it. Writer keys go in as hex. A Buffer that rides through JSON becomes `{ type: "Buffer", data: [...] }`, and Autobase throws.
+A shared folder with a local model and an address is one app. The skill is there to keep those pieces in one Bare worker, on one swarm, instead of inventing a server to glue them together.
 
-**B. Vault.** An Autopass vault and an invite. `assets/vault.cjs` creates it or pairs from the invite. The invite is a capability. It does not belong in a ticket, a log, or a screenshot.
+The family those products come from is [tether.io/data](https://tether.io/data/): Keet, Holepunch, Pear, QVAC, and Northern Data. Northern Data is the infrastructure investment. It is not a package, and the skill will not scaffold it. Keet, the product, has calls, video, and files. A text log this skill copies is not Keet. Say that plainly if someone asks for Keet.
 
-**C. On-device model.** `assets/qvac-worker.js` goes in a second Bare worker. Inference does not run in Node. `@qvac/inference` throws `require.addon is not a function` if you import it from a Node process.
+## What the agent is required to keep
 
-**D. Tunnel.** Holesail from the CLI: `npx holesail --live 3000`, then `npx holesail --connect hs://… --port 4000`. There is no library import on Node 22. `require('holesail-server')` dies on `bare-dgram`.
+- The screen draws. The peer-to-peer work lives in a Bare worker.
+- One Corestore. One Hyperswarm. Peers find each other on `discoveryKey`. The public key is the capability you hand to someone.
+- Shared mutable state goes through Autobase. The reducer does not touch the network or the clock.
+- Node.js 22.17 or newer, npm 10.9 or newer. Pear from [install.pears.com](https://install.pears.com). The version flag is `pear -v`.
+- Official docs win when this repo and the web disagree: [docs.pears.com](https://docs.pears.com), [docs.qvac.tether.io](https://docs.qvac.tether.io), [docs.wdk.tether.io](https://docs.wdk.tether.io), [docs.holesail.io](https://docs.holesail.io).
 
-**E. Room plus a wallet.** Recipe A, and `assets/wallet.mjs`. The Keet identity phrase and the WDK seed are generated apart. One phrase for both is a bug.
+`scripts/check-env.mjs` runs before the agent writes the app. `scripts/set-upgrade.mjs` stores the link from `pear touch`. `scripts/verify-app.mjs` runs before the agent calls the app done. If two peers never ran, the agent says the run is unverified.
 
-## What has to be true on the machine
+## A sitting you can run first
 
-Node **22.17+** and npm **10.9+**. Pear comes from [install.pears.com](https://install.pears.com):
-
-```sh
-curl https://install.pears.com/pear.sh | sh
-pear -v
-```
-
-`pear -v` is the version flag. `pear --version` is not. `pear touch` prints a `pear://` link and does not write it anywhere. `scripts/set-upgrade.mjs` reads that link and puts it in `package.json` under `upgrade`. Leaving `pear://<YOUR_KEY_HERE>` in that field is the usual reason a new Pear app fails to boot.
-
-The skill checks this with `scripts/check-env.mjs` before it writes an app, and `scripts/verify-app.mjs` before it calls the app done. If it could not run two peers, it says the run is unverified. That is the correct result.
-
-## How the code is supposed to sit
-
-The screen is Electron, React Native, or a terminal. It draws. The peer-to-peer work lives in a Bare worker: one Corestore, one Hyperswarm, replication on every connection. The swarm topic is `discoveryKey`. The public key is what you hand to someone so they can read or write. Those are different keys. Sharing the public key is handing over a capability.
-
-One writer per Hypercore. Several writers means Autobase, and `apply` stays a pure reducer. The official host to clone is in the skill, one per surface: `hello-pear-electron`, `hello-pear-bare`, `hello-pear-daemon`, `hello-pear-qvac-tui`, `hello-pear-react-native`. The skill does not invent a server and call it the room.
-
-A room from recipe A is a text log. [Keet](https://keet.io) is the product with calls and files. Northern Data is the infrastructure investment. It is not a dependency.
-
-If the skill and the docs disagree, follow the docs: [docs.pears.com](https://docs.pears.com) and [docs.qvac.tether.io](https://docs.qvac.tether.io).
-
-To watch the same pieces run before you ask an agent to build, clone [tether-p2p-demo](https://github.com/Crisvond-hnt/tether-p2p-demo), then `npm install` and `npm start`. Start a thread and send the code to a friend. They paste it in their own window.
+[tether-p2p-demo](https://github.com/Crisvond-hnt/tether-p2p-demo) is one app on this stack: a thread, a note, an address, and a model on the machine that asked. `npm install`, then `npm start`. It is a way to see the pieces move. It is not the skill, and it is not the limit of what the skill will build.
 
 Apache License 2.0. See `LICENSE`.

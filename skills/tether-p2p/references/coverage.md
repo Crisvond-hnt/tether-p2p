@@ -25,8 +25,8 @@ These are correct to use. They are **not** named on tether.io/data:
 
 ## What “done” is allowed to mean
 
-- One recipe, gold file copied, `scripts/set-upgrade.mjs` + `scripts/verify-app.mjs` exit 0.
-- Matching `scripts/prove-*.mjs` exit 0 **if** Hyper* deps are installed.
+- Every module the app asked for is in the worker, the matching gold file is copied where one exists, and `scripts/set-upgrade.mjs` + `scripts/verify-app.mjs` exit 0.
+- The `scripts/prove-*.mjs` for those blocks exit 0 **if** the Hyper* packages are installed.
 - Say **unverified** for: two real devices, Keet media, QVAC weights, WDK send, `pear seed` to a stranger, Northern Data.
 
 Official docs still win if this file and the web disagree: https://docs.pears.com · https://docs.qvac.tether.io

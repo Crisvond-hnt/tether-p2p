@@ -1,6 +1,6 @@
-# Recipes
+# Blocks
 
-Clone the official host first. Then add only the blocks below. Recheck https://docs.pears.com if a signature looks stale.
+Clone the official host first. Then copy every block the app needs. These sections are parts, not a menu where you pick one and stop. Section A is a shared text log. It does not stand in for Hyperdrive, a vault, a model, or a wallet. Recheck https://docs.pears.com if a signature looks stale.
 
 ## A — P2P text room (not Keet)
 

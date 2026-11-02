@@ -3,9 +3,10 @@ interface:
   short_description: Build Pear / Hypercore / QVAC / WDK apps with no cloud backend.
   brand_color: "#1A1A1A"
   default_prompt: >-
-    Use the tether-p2p skill. Follow SKILL.md in order. Run scripts/check-env.mjs,
-    clone the official Pear host, run scripts/set-upgrade.mjs, implement one recipe
-    in a Bare worker, then scripts/verify-app.mjs and the verify checklist.
+    Use the tether-p2p skill. Follow SKILL.md. List every module the app needs
+    and build all of them in a Bare worker. Run scripts/check-env.mjs, clone the
+    official Pear host, run scripts/set-upgrade.mjs, then scripts/verify-app.mjs
+    and the verify checklist. Do not collapse the app into a chat.
 
 policy:
   allow_implicit_invocation: true

@@ -9,7 +9,7 @@ Fix these before adding features. Each one will silently produce a demo that die
 | 3 | `swarm.join(core.key)` | `swarm.join(core.discoveryKey)` |
 | 4 | `import Hypercore from 'hypercore'` in React / renderer | Bare worker only; UI uses RPC / preload |
 | 5 | Autobase `apply` uses `Date.now()`, `Math.random()`, or `fetch` | Pure reduce of `nodes` into `view` |
-| 6 | New Corestore path per feature | One store, `namespace('chat')` |
+| 6 | New Corestore path per feature | One store, `namespace` per feature |
 | 7 | Same 24 words for identity and WDK | Two mnemonics |
 | 8 | File as base64 in a chat block | Hyperblobs id or Hyperdrive path |
 | 9 | “We’ll add seed later” | README includes `pear seed` / blind peer **now** |
