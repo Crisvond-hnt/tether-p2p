@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/** Skill capability score. Run from a dir that has Hyper* deps (this repo: tests/). */
+/** Skill capability score. cwd must be a directory with the Hyper* packages installed. Map: tests/. Desk: the repo root. */
 import { spawn } from 'node:child_process'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'

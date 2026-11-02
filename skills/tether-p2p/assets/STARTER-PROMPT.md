@@ -21,10 +21,8 @@ Constraints:
 If an API is unclear, fetch docs.pears.com or docs.qvac.tether.io — do not guess.
 ```
 
-If they only have this git repo:
+Installed from the skill repo: use the prompt above.
 
-```
-This repo is the Tether / Pear / QVAC knowledge base.
-Follow AGENTS.md and skills/tether-p2p/SKILL.md. Run skills/tether-p2p/scripts/*.
-Build: [same one sentence]
-```
+Map checkout, https://github.com/Crisvond-hnt/teather : follow `AGENTS.md` and `skills/tether-p2p/SKILL.md`.
+
+The sitting you can run, https://github.com/Crisvond-hnt/desk : `npm install`, then `npm run friends` and `npm run friends -- join`.

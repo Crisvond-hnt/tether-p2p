@@ -61,7 +61,7 @@ Forbidden: Express/Firebase/Next API/Socket.io/Supabase as the room.
 ## 2. Environment, then official scaffold
 
 ```sh
-# from the skill root (or this repo's skills/tether-p2p)
+# from the skill directory, the folder that contains SKILL.md
 node scripts/check-env.mjs
 # if pear missing:
 #   curl https://install.pears.com/pear.sh | sh
@@ -112,8 +112,9 @@ If an API is unclear, **fetch the official page in the recipe before writing**.
 
 ```sh
 node scripts/verify-app.mjs .
-# from a dir with Hyper* deps (cwd=tests in this repo):
-node scripts/prove-all.mjs
+# cwd = a directory that already installed the Hyper* packages
+#   desk repo root, or tests/ in the map
+node <skill>/scripts/prove-all.mjs
 ```
 
 Cases: [evals/cases.json](evals/cases.json). Checklist: [references/verify.md](references/verify.md). If two peers did not run, say **unverified at runtime**.
