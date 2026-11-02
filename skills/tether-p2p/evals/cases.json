@@ -1,0 +1,42 @@
+[
+  {
+    "id": "A-desktop-chat",
+    "recipe": "A",
+    "prompt": "Build a desktop P2P chat with invite links.",
+    "copy": ["assets/room.cjs"],
+    "prove": "scripts/prove-room.mjs",
+    "host": "electron"
+  },
+  {
+    "id": "B-vault",
+    "recipe": "B",
+    "prompt": "Build a multi-device notes vault with an invite.",
+    "copy": ["assets/vault.cjs"],
+    "prove": "scripts/prove-vault.mjs",
+    "host": "electron"
+  },
+  {
+    "id": "C-local-ai",
+    "recipe": "C",
+    "prompt": "Build an on-device AI terminal chat. No cloud API.",
+    "copy": ["assets/qvac-worker.js"],
+    "prove": "scripts/prove-qvac.mjs",
+    "host": "qvac-tui"
+  },
+  {
+    "id": "D-tunnel",
+    "recipe": "D",
+    "prompt": "Expose localhost:3000 to another machine with no account.",
+    "copy": [],
+    "prove": "scripts/prove-holesail.mjs",
+    "host": "holesail-cli"
+  },
+  {
+    "id": "E-wallet",
+    "recipe": "E",
+    "prompt": "Add a self-custodial ETH address next to a P2P room. New seed.",
+    "copy": ["assets/wallet.mjs", "assets/room.cjs"],
+    "prove": "scripts/prove-wallet.mjs",
+    "host": "electron"
+  }
+]
